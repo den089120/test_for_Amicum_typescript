@@ -1,7 +1,14 @@
+export type dataStoreType = {
+    [index: string]: string | number;
+}
+export type dataFuncType = {
+    [index: string]: Array<(()=>void)>;
+}
+
 
 export interface TypeStore {
-    dataStore: Record<string, string | number>;
-    dataFunc: Record<string, Array<()=>void>>;
+    dataStore: dataStoreType;
+    dataFunc: dataFuncType;
     getData: (data: string, fn:()=>void) => string | number;
     setData: (data: string, value: string | number) => void;
 }

@@ -1,8 +1,8 @@
-import {TypeStore} from "./TypeStore";
+import {dataFuncType, dataStoreType, TypeStore} from "./TypeStore";
 
 export class Store implements TypeStore {
-    dataStore = {}
-    dataFunc = {}
+    dataStore:dataStoreType = {'':''}
+    dataFunc:dataFuncType = {'': [()=>{}] }
     constructor() {
     }
 
@@ -10,7 +10,8 @@ export class Store implements TypeStore {
         this.dataStore[data] = value
     }
     getData (data: string, fn: () => void) {
-        if (!this.dataFunc[data].include(fn)) this.dataFunc[data].push(fn)
+
+        if (!this.dataFunc[data]) this.dataFunc[data].push(fn) // add includes
 
         return  this.dataStore[data]
     }
